@@ -120,7 +120,7 @@ public class SinglyLinkedList<T> {
 
     // Inserta un nuevo nodo en una posicion especifica de la lista
     public void insertNth(T data, int position) {
-        if(isEmpty() || position >= size){
+        if(isEmpty() || position > size){
             if(isEmpty() && position == 0) //Inserta primer elemento
                 addFirst(data);
             else
@@ -145,7 +145,7 @@ public class SinglyLinkedList<T> {
 
     // Elimina el nodo de una posicion especifica de la lista
     public void deleteNth(int position) {
-        if(isEmpty() || position >= size){
+        if(isEmpty() || position > size){
             if(isEmpty())
                 //Si está vacío, envía un mensaje 
                 System.out.println("Vacío"); 

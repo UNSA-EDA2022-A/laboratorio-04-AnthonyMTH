@@ -16,7 +16,7 @@ public class Node<T> implements Comparable<Node<T>>{
     public void setValue(T v) { value=v; }
     public void setNext(Node<T> n) { next = n; }
     public String toString() {
-        return this.data.toString();
+        return this.value.toString();
     }
     public int compareTo(Node<T> e) {
         if(this.getValue().equals(e.getValue())) 

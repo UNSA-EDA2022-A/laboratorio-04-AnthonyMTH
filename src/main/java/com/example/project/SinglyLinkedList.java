@@ -100,23 +100,78 @@ public class SinglyLinkedList<T> {
 
     // Elimina aquellos nodos de la lista que esten duplicados
     public void deleteDuplicates() {
-
+        Node<T> aux = this.first;
+        Node<T> temp = aux.getNext(); //temp va a ser quien se mueva para buscar nodos repetidos y eliminarlos
+        for(int j = 1; aux.getNext() != null; aux = aux.getNext(), temp = aux.getNext(), j++){
+            //Este for recorrerá hasta llegar al penúltimo nodo, "j" nos servirá para localizar el índice
+            for(int i = j; temp != null;) {
+                //Este for se inicia con i = j, en donde i representa el índice que se está comparando con aux
+                if(temp.compareTo(aux) == 0) { //Si son iguales se elimina
+                    temp = temp.getNext(); 
+                    deleteNth(i); //Eliminar
+                    continue; //Para no cambiar el valor de i
+                }
+                //En caso no sean iguales el valor de i(índice) aumenta y se sigue el bucle hasta que "temp" sea null
+                temp = temp.getNext();
+                i++;
+            }  
+        }
     }
 
     // Inserta un nuevo nodo en una posicion especifica de la lista
     public void insertNth(T data, int position) {
-
+        if(isEmpty() || position > size){
+            if(isEmpty() && position == 0) //Inserta primer elemento
+                addFirst(data);
+            else
+                System.out.println("Fuera de rango.");
+        }  
+        else if(position >= 0){
+            //Verifica que la posición que se quiera eliminar sea un valor válido
+            if(position == 0)
+                //Si nos pide insertar en la posición 0
+                addFirst(data);
+            else { 
+                Node<T> aux = this.first;
+                for (int j = 0; j < position-1; j++) 
+                    //Recorre hasta la posición-1, para asignar la posición siguiente al nodo que salga del bucle
+                    aux = aux.getNext();
+                //Se inserta el nuevo nodo
+                aux.setNext(new Node<T>(data, aux.getNext()));
+                size++;
+            }
+        }
     }
 
     // Elimina el nodo de una posicion especifica de la lista
     public void deleteNth(int position) {
-
+        if(isEmpty() || position > size){
+            if(isEmpty())
+                //Si está vacío, envía un mensaje 
+                System.out.println("Vacío"); 
+            else
+                System.out.println("Fuera de rango.");
+        }       
+        else if(position >= 0){
+            //Verifica que la posición que se quiera eliminar sea un valor válido
+            if(position == 0)
+                //Si nos pide eliminar la posición 0
+                removeFirst();
+            else {
+                Node<T> aux = this.first;
+                for (int i = 0; i < position-1; i++) 
+                    //Recorre hasta la posición-1, para "setearlo" al subsiguiente de ese mismo (eliminar)
+                    aux = aux.getNext();
+                aux.setNext(aux.getNext().getNext()); //Elimina
+                size--;
+            }
+        }
     }
 
     public static void main(final String[] args) {
 
-        // testExercicio1();
-        // testExercicio2();
+        testExercicio1();
+        testExercicio2();
         testExercicio3();       
 
     }

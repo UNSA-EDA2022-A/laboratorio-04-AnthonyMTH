@@ -19,7 +19,7 @@ public class Node<T> implements Comparable<Node<T>>{
         return this.data.toString();
     }
     public int compareTo(Node<T> e) {
-        if(this.getData().equals(e.getData())) 
+        if(this.getValue().equals(e.getValue())) 
             return 0;
         return -1;
     }
